@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 3 - CSS Font Size Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#F4F7FB;
+    color:#333;
+}
+
+header{
+    background:#1565C0;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+header h1{
+    font-size:38px;
+}
+
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:30px auto;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    margin-bottom:25px;
+}
+
+h2{
+    color:#1565C0;
+    margin-bottom:15px;
+}
+
+.code{
+    background:#1E1E1E;
+    color:#7CFC00;
+    padding:20px;
+    border-radius:10px;
+    overflow:auto;
+}
+
+button{
+    background:#1565C0;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#0D47A1;
+}
+
+.preview{
+    margin-top:20px;
+    padding:25px;
+    border:2px dashed #ccc;
+    border-radius:10px;
+    background:#fafafa;
+}
+
+.text{
+    font-size:40px;
+    color:#1565C0;
+    font-weight:bold;
+}
+
+.exercise{
+    background:#FFF8E1;
+    border-left:6px solid orange;
+    padding:20px;
+    border-radius:10px;
+}
+
+footer{
+    background:#1565C0;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 3 - CSS Font Size Property</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+
+Learn how to use the <strong>font-size</strong> property to increase or decrease the size of text.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+
+<pre>
+selector{
+    font-size:value;
+}
+</pre>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+
+<pre>
+&lt;h1 class="text"&gt;
+Welcome Students
+&lt;/h1&gt;
+</pre>
+
+</div>
+
+<button onclick="copyHTML()">
+
+Copy HTML
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+
+<pre>
+.text{
+    font-size:40px;
+    color:#1565C0;
+}
+</pre>
+
+</div>
+
+<button onclick="copyCSS()">
+
+Copy CSS
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+
+<pre>
+document.querySelector(".text")
+.addEventListener("click",function(){
+
+this.style.fontSize="60px";
+
+});
+</pre>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<h1 class="text">
+
+Welcome Students
+
+</h1>
+
+<p>
+
+Click the heading to increase the font size.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p>
+
+The HTML creates a heading using the <strong>h1</strong> element.
+
+</p>
+
+<br>
+
+<p>
+
+The CSS sets the text size to <strong>40px</strong>.
+
+</p>
+
+<br>
+
+<p>
+
+The JavaScript changes the font size to <strong>60px</strong> when the heading is clicked.
+
+</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>
+
+Change the font size to:
+
+</p>
+
+<ul>
+
+<li>20px</li>
+
+<li>30px</li>
+
+<li>50px</li>
+
+<li>70px</li>
+
+<li>100px</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 3 Completed
+
+</footer>
+
+<script>
+
+document.querySelector(".text").addEventListener("click",function(){
+
+this.style.fontSize="60px";
+
+});
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<h1 class="text">
+Welcome Students
+</h1>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.text{
+font-size:40px;
+color:#1565C0;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

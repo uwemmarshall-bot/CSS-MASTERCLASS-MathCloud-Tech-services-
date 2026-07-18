@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 9 - CSS Border Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#F4F7FB;
+    color:#333;
+}
+
+header{
+    background:#1565C0;
+    color:#fff;
+    text-align:center;
+    padding:30px;
+}
+
+header h1{
+    font-size:38px;
+}
+
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:30px auto;
+}
+
+.card{
+    background:#fff;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+    color:#1565C0;
+    margin-bottom:15px;
+}
+
+.code{
+    background:#1E1E1E;
+    color:#7CFC00;
+    padding:20px;
+    border-radius:10px;
+    overflow:auto;
+}
+
+button{
+    background:#1565C0;
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#0D47A1;
+}
+
+.preview{
+    background:#FAFAFA;
+    border:2px dashed #CCC;
+    border-radius:10px;
+    padding:25px;
+}
+
+.box{
+    border:4px solid #1565C0;
+    padding:20px;
+    text-align:center;
+    font-size:28px;
+    transition:.3s;
+}
+
+.exercise{
+    background:#FFF8E1;
+    border-left:6px solid orange;
+    padding:20px;
+    border-radius:10px;
+}
+
+footer{
+    background:#1565C0;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 9 - CSS Border Property</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+The <strong>border</strong> property adds a border around an HTML element. You can change its width, style and colour.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+<pre>
+selector{
+    border:4px solid blue;
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;div class="box"&gt;
+Border Example
+&lt;/div&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+.box{
+    border:4px solid #1565C0;
+    padding:20px;
+    text-align:center;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.border=="6px dashed red"){
+
+this.style.border="4px solid #1565C0";
+
+}else{
+
+this.style.border="6px dashed red";
+
+}
+
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<div class="box">
+Border Example
+</div>
+
+<p style="margin-top:15px;">
+Click the box to change the border style.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates the box.</p>
+
+<br>
+
+<p><strong>CSS</strong> gives the box a blue solid border.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> changes the border between a blue solid border and a red dashed border when the box is clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>Try these border styles:</p>
+
+<ul>
+
+<li>2px solid green</li>
+
+<li>5px dashed red</li>
+
+<li>4px dotted blue</li>
+
+<li>6px double purple</li>
+
+<li>3px groove orange</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 9 Completed
+
+</footer>
+
+<script>
+
+const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.border=="6px dashed red"){
+
+this.style.border="4px solid #1565C0";
+
+}else{
+
+this.style.border="6px dashed red";
+
+}
+
+}
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<div class="box">
+Border Example
+</div>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.box{
+border:4px solid #1565C0;
+padding:20px;
+text-align:center;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

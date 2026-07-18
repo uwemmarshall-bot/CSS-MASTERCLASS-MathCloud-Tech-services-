@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 4 - CSS Font Family Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#F4F7FB;
+    color:#333;
+}
+
+header{
+    background:#1565C0;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+header h1{
+    font-size:38px;
+}
+
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:30px auto;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+    color:#1565C0;
+    margin-bottom:15px;
+}
+
+.code{
+    background:#1E1E1E;
+    color:#7CFC00;
+    padding:20px;
+    border-radius:10px;
+    overflow:auto;
+}
+
+button{
+    background:#1565C0;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    background:#0D47A1;
+}
+
+.preview{
+    margin-top:20px;
+    padding:25px;
+    border:2px dashed #CCC;
+    border-radius:10px;
+    background:#FAFAFA;
+}
+
+.text{
+    font-family:"Courier New", monospace;
+    font-size:35px;
+    color:#1565C0;
+}
+
+.exercise{
+    background:#FFF8E1;
+    border-left:6px solid orange;
+    padding:20px;
+    border-radius:10px;
+}
+
+footer{
+    background:#1565C0;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 4 - CSS Font Family Property</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+The <strong>font-family</strong> property is used to change the style or typeface of text on a webpage.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+<pre>
+selector{
+    font-family: Arial;
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;h1 class="text"&gt;
+Learning CSS
+&lt;/h1&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+.text{
+    font-family:"Courier New", monospace;
+    font-size:35px;
+    color:#1565C0;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+document.querySelector(".text")
+.addEventListener("click",function(){
+
+this.style.fontFamily="Georgia";
+
+});
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<h1 class="text">Learning CSS</h1>
+
+<p>Click the heading to change the font family.</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p>
+The HTML creates the heading.
+</p>
+
+<br>
+
+<p>
+The CSS changes the font family to <strong>Courier New</strong>.
+</p>
+
+<br>
+
+<p>
+The JavaScript changes the font family to <strong>Georgia</strong> when the heading is clicked.
+</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>Change the font family to:</p>
+
+<ul>
+<li>Arial</li>
+<li>Verdana</li>
+<li>Tahoma</li>
+<li>Times New Roman</li>
+<li>Georgia</li>
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 4 Completed
+
+</footer>
+
+<script>
+
+document.querySelector(".text").addEventListener("click",function(){
+
+this.style.fontFamily="Georgia";
+
+});
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<h1 class="text">
+Learning CSS
+</h1>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.text{
+font-family:"Courier New", monospace;
+font-size:35px;
+color:#1565C0;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>
