@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 13 - CSS Background Color Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+header h1{
+font-size:38px;
+}
+
+.container{
+width:95%;
+max-width:1100px;
+margin:30px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.preview{
+background:#FAFAFA;
+border:2px dashed #CCC;
+border-radius:10px;
+padding:25px;
+}
+
+.box{
+background:#1565C0;
+color:white;
+padding:30px;
+text-align:center;
+font-size:28px;
+border-radius:10px;
+transition:.4s;
+cursor:pointer;
+}
+
+.exercise{
+background:#FFF8E1;
+border-left:6px solid orange;
+padding:20px;
+border-radius:10px;
+}
+
+footer{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 13 - CSS Background Color Property</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+The <strong>background-color</strong> property is used to change the background colour of an HTML element.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+<pre>
+selector{
+background-color:blue;
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;div class="box"&gt;
+Background Colour Example
+&lt;/div&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+.box{
+background:#1565C0;
+color:white;
+padding:30px;
+text-align:center;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.background=="tomato"){
+
+this.style.background="#1565C0";
+
+}else{
+
+this.style.background="tomato";
+
+}
+
+}
+</pre>
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<div class="box">
+
+Background Colour Example
+
+</div>
+
+<p style="margin-top:20px;">
+Click the box to change its background colour.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates the box.</p>
+
+<br>
+
+<p><strong>CSS</strong> gives the box a blue background using the <strong>background-color</strong> property.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> changes the background colour between blue and tomato whenever the box is clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>Try changing the background colour to:</p>
+
+<ul>
+
+<li>Green</li>
+
+<li>Red</li>
+
+<li>Purple</li>
+
+<li>Orange</li>
+
+<li>Black</li>
+
+<li>Gold</li>
+
+<li>Pink</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 13 Completed
+
+</footer>
+
+<script>
+
+const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.background=="tomato"){
+
+this.style.background="#1565C0";
+
+}else{
+
+this.style.background="tomato";
+
+}
+
+}
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<div class="box">
+Background Colour Example
+</div>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.box{
+background:#1565C0;
+color:white;
+padding:30px;
+text-align:center;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText(`const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.background=="tomato"){
+
+this.style.background="#1565C0";
+
+}else{
+
+this.style.background="tomato";
+
+}
+
+};`);
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>
