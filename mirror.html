@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beacon — Mirror your phone screen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B1220;
+    --bg-raised: #101A2E;
+    --line: #1F2C45;
+    --text: #E9EEF5;
+    --muted: #6B7A90;
+    --signal: #4CC9F0;
+    --signal-dim: #1C4A57;
+    --beacon: #FFB454;
+    --danger: #FF6B6B;
+    --ok: #4ADE80;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(76,201,240,0.06), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(255,180,84,0.05), transparent 40%);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  header{
+    width:100%;
+    max-width:720px;
+    padding: 32px 20px 8px;
+    text-align:center;
+  }
+  .wordmark{
+    font-family:'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    color: var(--signal);
+    text-transform:uppercase;
+    margin-bottom: 10px;
+  }
+  h1{
+    font-size: clamp(28px, 5vw, 40px);
+    margin: 0 0 8px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  p.sub{
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 460px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  main{
+    width:100%;
+    max-width:720px;
+    padding: 24px 20px 60px;
+    flex:1;
+  }
+  .tabs{
+    display:flex;
+    gap:8px;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px;
+    margin: 24px 0 28px;
+  }
+  .tab{
+    flex:1;
+    text-align:center;
+    padding: 12px 16px;
+    border-radius: 999px;
+    font-weight:600;
+    font-size:14px;
+    cursor:pointer;
+    color: var(--muted);
+    transition: all .2s ease;
+    user-select:none;
+  }
+  .tab.active{
+    background: var(--signal-dim);
+    color: var(--signal);
+  }
+  .panel{ display:none; }
+  .panel.active{ display:block; }
+
+  .card{
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 18px;
+  }
+  .card h2{
+    font-size: 15px;
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* --- Beacon signature element --- */
+  .beacon-wrap{
+    position:relative;
+    width: 160px;
+    height:160px;
+    margin: 8px auto 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .ring{
+    position:absolute;
+    border-radius:50%;
+    border: 1px solid var(--beacon);
+    opacity:0;
+  }
+  .beacon-wrap.pulsing .ring{
+    animation: pulse 2.2s ease-out infinite;
+  }
+  .ring:nth-child(1){ animation-delay: 0s; }
+  .ring:nth-child(2){ animation-delay: 0.7s; }
+  .ring:nth-child(3){ animation-delay: 1.4s; }
+  @keyframes pulse{
+    0%   { width:60px; height:60px; opacity:0.7; }
+    100% { width:160px; height:160px; opacity:0; }
+  }
+  .beacon-core{
+    position:relative;
+    z-index:2;
+    width:64px; height:64px;
+    border-radius:50%;
+    background: var(--beacon-dim, rgba(255,180,84,0.1));
+    border: 2px solid var(--beacon);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: all .4s ease;
+  }
+  .beacon-core.connected{
+    border-color: var(--ok);
+    background: rgba(74,222,128,0.12);
+  }
+  .beacon-core svg{ width:26px; height:26px; }
+
+  .code-display{
+    font-family:'Space Mono', monospace;
+    font-size: 40px;
+    font-weight:700;
+    letter-spacing: 0.15em;
+    text-align:center;
+    color: var(--beacon);
+    margin: 4px 0 4px;
+  }
+  .status-line{
+    text-align:center;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-family:'Space Mono', monospace;
+  }
+  .status-line.ok{ color: var(--ok); }
+  .status-line.err{ color: var(--danger); }
+
+  video{
+    width:100%;
+    border-radius: 10px;
+    background: #000;
+    display:block;
+    margin-top: 14px;
+    border: 1px solid var(--line);
+  }
+
+  input[type=text]{
+    width:100%;
+    background: #0B1220;
+    border: 1px solid var(--line);
+    color: var(--text);
+    font-family:'Space Mono', monospace;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    text-align:center;
+    padding: 14px;
+    border-radius: 10px;
+    text-transform: uppercase;
+  }
+  input[type=text]:focus{
+    outline:none;
+    border-color: var(--signal);
+  }
+
+  button{
+    width:100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    font-family:'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    cursor:pointer;
+    margin-top: 12px;
+    transition: transform .15s ease, opacity .15s ease;
+  }
+  button:active{ transform: scale(0.98); }
+  button:disabled{ opacity:0.45; cursor:not-allowed; }
+  .btn-primary{ background: var(--signal); color: #04141C; }
+  .btn-ghost{ background: transparent; color: var(--muted); border: 1px solid var(--line); }
+  .btn-danger{ background: transparent; color: var(--danger); border: 1px solid rgba(255,107,107,0.3); }
+
+  .note{
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+  }
+  .note b{ color: var(--text); }
+  footer{
+    color: var(--muted);
+    font-size: 12px;
+    padding: 20px;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wordmark">◍ Beacon</div>
+  <h1>Mirror your phone screen</h1>
+  <p class="sub">Broadcast from your phone, watch on any other screen. No app, no account — just a code.</p>
+</header>
+
+<main>
+  <div class="tabs">
+    <div class="tab active" data-panel="broadcast">Broadcast this phone</div>
+    <div class="tab" data-panel="watch">Watch a phone</div>
+  </div>
+
+  <!-- BROADCAST PANEL -->
+  <div class="panel active" id="panel-broadcast">
+    <div class="card">
+      <h2>Step 1 — Start broadcasting</h2>
+      <div class="beacon-wrap" id="broadcastBeaconWrap">
+        <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+        <div class="beacon-core" id="broadcastCore">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFB454" stroke-width="2"><path d="M12 2a5 5 0 0 0-5 5v5a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg>
+        </div>
+      </div>
+      <div class="code-display" id="broadcastCode">— — — — — —</div>
+      <div class="status-line" id="broadcastStatus">Tap start to generate a pairing code</div>
+      <button class="btn-primary" id="startBroadcastBtn">Start broadcasting</button>
+      <button class="btn-danger" id="stopBroadcastBtn" style="display:none;">Stop broadcasting</button>
+      <video id="localPreview" autoplay muted playsinline style="display:none;"></video>
+      <div class="note">
+        <b>Share the code above</b> with the device you want to watch on. Your phone will ask you to pick a screen or window to share — choose "Entire screen" for a full mirror.<br><br>
+        <b>Browser support:</b> screen sharing from a phone requires a browser built on Chromium (Chrome, Edge, Brave) on Android. Safari on iOS does not currently allow a web page to capture the phone's own screen.
+      </div>
+    </div>
+  </div>
+
+  <!-- WATCH PANEL -->
+  <div class="panel" id="panel-watch">
+    <div class="card">
+      <h2>Step 1 — Enter the code</h2>
+      <input type="text" id="joinCodeInput" maxlength="6" placeholder="ABC123" autocomplete="off" />
+      <button class="btn-primary" id="joinBtn">Connect</button>
+      <div class="status-line" id="watchStatus" style="margin-top:14px;"></div>
+      <video id="remoteVideo" autoplay playsinline style="display:none;"></video>
+      <button class="btn-danger" id="leaveBtn" style="display:none;">Disconnect</button>
+    </div>
+  </div>
+</main>
+
+<footer>Connections are peer-to-peer over WebRTC. The code is only used to introduce the two devices.</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBA_gGITL3vOX_wymV8m3c7h_2kYxUEL0A",
+  authDomain: "email-5e336.firebaseapp.com",
+  databaseURL: "https://email-5e336-default-rtdb.firebaseio.com",
+  projectId: "email-5e336",
+  storageBucket: "email-5e336.appspot.com",
+  messagingSenderId: "561655323170",
+  appId: "1:561655323170:web:42fcf886c34f2d5a16487b",
+  measurementId: "G-J92WNBY5RL"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+const ICE_SERVERS = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+
+// ---------- Tabs ----------
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+  });
+});
+
+function makeCode(len = 6) {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let out = '';
+  for (let i = 0; i < len; i++) out += chars[Math.floor(Math.random() * chars.length)];
+  return out;
+}
+
+// ================= BROADCASTER =================
+let bcPeer = null;
+let bcStream = null;
+let bcRoomRef = null;
+let bcCode = null;
+
+const startBroadcastBtn = document.getElementById('startBroadcastBtn');
+const stopBroadcastBtn = document.getElementById('stopBroadcastBtn');
+const broadcastStatus = document.getElementById('broadcastStatus');
+const broadcastCode = document.getElementById('broadcastCode');
+const broadcastBeaconWrap = document.getElementById('broadcastBeaconWrap');
+const broadcastCore = document.getElementById('broadcastCore');
+const localPreview = document.getElementById('localPreview');
+
+function setBroadcastStatus(msg, kind) {
+  broadcastStatus.textContent = msg;
+  broadcastStatus.className = 'status-line' + (kind ? ' ' + kind : '');
+}
+
+startBroadcastBtn.addEventListener('click', async () => {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+    setBroadcastStatus('This browser cannot capture the screen. Try Chrome on Android.', 'err');
+    return;
+  }
+  try {
+    bcStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false });
+  } catch (err) {
+    setBroadcastStatus('Screen share was cancelled or denied.', 'err');
+    return;
+  }
+
+  bcCode = makeCode();
+  broadcastCode.textContent = bcCode.split('').join(' ');
+  bcRoomRef = db.ref('rooms/' + bcCode);
+  await bcRoomRef.set({ createdAt: Date.now() });
+
+  bcPeer = new RTCPeerConnection(ICE_SERVERS);
+  bcStream.getTracks().forEach(track => bcPeer.addTrack(track, bcStream));
+
+  localPreview.srcObject = bcStream;
+  localPreview.style.display = 'block';
+
+  bcPeer.onicecandidate = (event) => {
+    if (event.candidate) {
+      bcRoomRef.child('callerCandidates').push(event.candidate.toJSON());
+    }
+  };
+
+  bcPeer.onconnectionstatechange = () => {
+    if (bcPeer.connectionState === 'connected') {
+      broadcastBeaconWrap.classList.remove('pulsing');
+      broadcastCore.classList.add('connected');
+      setBroadcastStatus('Viewer connected', 'ok');
+    } else if (['disconnected', 'failed', 'closed'].includes(bcPeer.connectionState)) {
+      broadcastCore.classList.remove('connected');
+      setBroadcastStatus('Viewer disconnected', 'err');
+    }
+  };
+
+  // If the user stops sharing from the browser's own UI
+  bcStream.getVideoTracks()[0].addEventListener('ended', () => {
+    stopBroadcasting();
+  });
+
+  const offer = await bcPeer.createOffer();
+  await bcPeer.setLocalDescription(offer);
+  await bcRoomRef.child('offer').set({ type: offer.type, sdp: offer.sdp });
+
+  bcRoomRef.child('answer').on('value', async (snap) => {
+    const answer = snap.val();
+    if (answer && bcPeer.currentRemoteDescription === null) {
+      await bcPeer.setRemoteDescription(new RTCSessionDescription(answer));
+    }
+  });
+
+  bcRoomRef.child('calleeCandidates').on('child_added', (snap) => {
+    bcPeer.addIceCandidate(new RTCIceCandidate(snap.val())).catch(() => {});
+  });
+
+  broadcastBeaconWrap.classList.add('pulsing');
+  setBroadcastStatus('Waiting for a viewer to connect…');
+  startBroadcastBtn.style.display = 'none';
+  stopBroadcastBtn.style.display = 'block';
+});
+
+async function stopBroadcasting() {
+  if (bcStream) bcStream.getTracks().forEach(t => t.stop());
+  if (bcPeer) bcPeer.close();
+  if (bcRoomRef) await bcRoomRef.remove();
+  bcPeer = null; bcStream = null;
+  broadcastBeaconWrap.classList.remove('pulsing');
+  broadcastCore.classList.remove('connected');
+  broadcastCode.textContent = '— — — — — —';
+  localPreview.style.display = 'none';
+  setBroadcastStatus('Tap start to generate a pairing code');
+  startBroadcastBtn.style.display = 'block';
+  stopBroadcastBtn.style.display = 'none';
+}
+stopBroadcastBtn.addEventListener('click', stopBroadcasting);
+
+// ================= VIEWER =================
+let vwPeer = null;
+let vwRoomRef = null;
+
+const joinCodeInput = document.getElementById('joinCodeInput');
+const joinBtn = document.getElementById('joinBtn');
+const watchStatus = document.getElementById('watchStatus');
+const remoteVideo = document.getElementById('remoteVideo');
+const leaveBtn = document.getElementById('leaveBtn');
+
+function setWatchStatus(msg, kind) {
+  watchStatus.textContent = msg;
+  watchStatus.className = 'status-line' + (kind ? ' ' + kind : '');
+}
+
+joinBtn.addEventListener('click', async () => {
+  const code = joinCodeInput.value.trim().toUpperCase();
+  if (code.length < 4) {
+    setWatchStatus('Enter the code shown on the broadcasting phone.', 'err');
+    return;
+  }
+
+  vwRoomRef = db.ref('rooms/' + code);
+  const snap = await vwRoomRef.once('value');
+  if (!snap.exists() || !snap.val().offer) {
+    setWatchStatus('No broadcast found for that code.', 'err');
+    return;
+  }
+
+  joinBtn.disabled = true;
+  setWatchStatus('Connecting…');
+
+  vwPeer = new RTCPeerConnection(ICE_SERVERS);
+
+  vwPeer.ontrack = (event) => {
+    remoteVideo.srcObject = event.streams[0];
+    remoteVideo.style.display = 'block';
+  };
+
+  vwPeer.onicecandidate = (event) => {
+    if (event.candidate) {
+      vwRoomRef.child('calleeCandidates').push(event.candidate.toJSON());
+    }
+  };
+
+  vwPeer.onconnectionstatechange = () => {
+    if (vwPeer.connectionState === 'connected') {
+      setWatchStatus('Connected', 'ok');
+      leaveBtn.style.display = 'block';
+    } else if (['disconnected', 'failed', 'closed'].includes(vwPeer.connectionState)) {
+      setWatchStatus('Disconnected from broadcast.', 'err');
+    }
+  };
+
+  const offer = snap.val().offer;
+  await vwPeer.setRemoteDescription(new RTCSessionDescription(offer));
+  const answer = await vwPeer.createAnswer();
+  await vwPeer.setLocalDescription(answer);
+  await vwRoomRef.child('answer').set({ type: answer.type, sdp: answer.sdp });
+
+  vwRoomRef.child('callerCandidates').on('child_added', (snap2) => {
+    vwPeer.addIceCandidate(new RTCIceCandidate(snap2.val())).catch(() => {});
+  });
+
+  // If broadcaster removes the room (stops sharing), tear down.
+  vwRoomRef.on('value', (s) => {
+    if (!s.exists() && vwPeer) {
+      teardownViewer();
+      setWatchStatus('Broadcast ended.', 'err');
+    }
+  });
+});
+
+function teardownViewer() {
+  if (vwPeer) { vwPeer.close(); vwPeer = null; }
+  remoteVideo.style.display = 'none';
+  remoteVideo.srcObject = null;
+  leaveBtn.style.display = 'none';
+  joinBtn.disabled = false;
+}
+leaveBtn.addEventListener('click', () => {
+  teardownViewer();
+  setWatchStatus('Disconnected.');
+});
+</script>
+</body>
+</html>
