@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 18 - CSS Text Shadow Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+header h1{
+font-size:38px;
+}
+
+.container{
+width:95%;
+max-width:1100px;
+margin:30px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.preview{
+background:#FAFAFA;
+border:2px dashed #CCC;
+border-radius:10px;
+padding:30px;
+text-align:center;
+}
+
+.text{
+font-size:42px;
+font-weight:bold;
+color:#1565C0;
+text-shadow:3px 3px 6px rgba(0,0,0,.4);
+cursor:pointer;
+transition:.4s;
+}
+
+.exercise{
+background:#FFF8E1;
+border-left:6px solid orange;
+padding:20px;
+border-radius:10px;
+}
+
+footer{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 18 - CSS Text Shadow Property</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+The <strong>text-shadow</strong> property adds a shadow effect to text, making headings and titles more attractive.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+<pre>
+.text{
+text-shadow:3px 3px 6px gray;
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;h1 class="text"&gt;
+CSS Text Shadow
+&lt;/h1&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+.text{
+color:#1565C0;
+text-shadow:3px 3px 6px rgba(0,0,0,.4);
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const text=document.querySelector(".text");
+
+text.onclick=function(){
+
+if(this.style.textShadow=="none"){
+
+this.style.textShadow="3px 3px 6px rgba(0,0,0,.4)";
+
+}else{
+
+this.style.textShadow="none";
+
+}
+
+}
+</pre>
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<h1 class="text">
+
+CSS Text Shadow
+
+</h1>
+
+<p style="margin-top:20px;">
+Click the heading to remove and restore the text shadow.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates the heading.</p>
+
+<br>
+
+<p><strong>CSS</strong> applies a shadow to the text using the <strong>text-shadow</strong> property.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> removes and restores the text shadow whenever the heading is clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>Try these values:</p>
+
+<ul>
+
+<li>2px 2px 4px black</li>
+
+<li>4px 4px 8px blue</li>
+
+<li>0 0 10px red</li>
+
+<li>5px 5px 5px green</li>
+
+<li>Remove the shadow completely</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 18 Completed
+
+</footer>
+
+<script>
+
+const text=document.querySelector(".text");
+
+text.onclick=function(){
+
+if(this.style.textShadow=="none"){
+
+this.style.textShadow="3px 3px 6px rgba(0,0,0,.4)";
+
+}else{
+
+this.style.textShadow="none";
+
+}
+
+}
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<h1 class="text">
+CSS Text Shadow
+</h1>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.text{
+color:#1565C0;
+text-shadow:3px 3px 6px rgba(0,0,0,.4);
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText(`const text=document.querySelector(".text");
+
+text.onclick=function(){
+
+if(this.style.textShadow=="none"){
+
+this.style.textShadow="3px 3px 6px rgba(0,0,0,.4)";
+
+}else{
+
+this.style.textShadow="none";
+
+}
+
+};`);
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

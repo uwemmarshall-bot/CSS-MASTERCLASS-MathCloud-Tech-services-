@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 26 - CSS Table Styling</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:#1565C0;
+color:#fff;
+padding:30px;
+text-align:center;
+}
+
+header h1{
+font-size:38px;
+}
+
+.container{
+width:95%;
+max-width:1150px;
+margin:30px auto;
+}
+
+.card{
+background:#fff;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:#fff;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.preview{
+overflow:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th{
+background:#1565C0;
+color:white;
+padding:15px;
+border:1px solid #ccc;
+}
+
+td{
+padding:15px;
+border:1px solid #ccc;
+text-align:center;
+}
+
+tr:nth-child(even){
+background:#F1F8FF;
+}
+
+tr:hover{
+background:#E3F2FD;
+cursor:pointer;
+}
+
+.exercise{
+background:#FFF8E1;
+padding:20px;
+border-left:6px solid orange;
+border-radius:10px;
+}
+
+footer{
+background:#1565C0;
+color:#fff;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 26 - CSS Table Styling</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>Create professional HTML tables using CSS properties such as <strong>border-collapse</strong>, <strong>padding</strong>, <strong>background-color</strong>, <strong>hover effects</strong>, and <strong>nth-child()</strong>.</p>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;table&gt;
+
+&lt;tr&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th&gt;Course&lt;/th&gt;
+&lt;th&gt;Score&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;John&lt;/td&gt;
+&lt;td&gt;CSS&lt;/td&gt;
+&lt;td&gt;95&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:15px;
+}
+
+tr:nth-child(even){
+background:#F1F8FF;
+}
+
+tr:hover{
+background:#E3F2FD;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const rows=document.querySelectorAll("tr");
+
+rows.forEach(row=>{
+
+row.onclick=function(){
+
+alert("You clicked a table row.");
+
+}
+
+});
+</pre>
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<table>
+
+<tr>
+
+<th>Student</th>
+
+<th>Course</th>
+
+<th>Score</th>
+
+</tr>
+
+<tr>
+
+<td>Mary</td>
+
+<td>CSS</td>
+
+<td>95%</td>
+
+</tr>
+
+<tr>
+
+<td>James</td>
+
+<td>HTML</td>
+
+<td>90%</td>
+
+</tr>
+
+<tr>
+
+<td>Grace</td>
+
+<td>JavaScript</td>
+
+<td>98%</td>
+
+</tr>
+
+<tr>
+
+<td>David</td>
+
+<td>Web Design</td>
+
+<td>88%</td>
+
+</tr>
+
+</table>
+
+<p style="margin-top:20px;">
+Click any table row.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates the table structure.</p>
+
+<br>
+
+<p><strong>CSS</strong> styles the table, adds borders, spacing, alternating row colors, and hover effects.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> detects when a table row is clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<ul>
+
+<li>Add another student record.</li>
+
+<li>Change the header background color.</li>
+
+<li>Increase the table padding.</li>
+
+<li>Add five more rows.</li>
+
+<li>Center the entire table.</li>
+
+<li>Change the hover color.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 26 Completed
+
+</footer>
+
+<script>
+
+const rows=document.querySelectorAll("tr");
+
+rows.forEach(row=>{
+
+row.onclick=function(){
+
+alert("You clicked a table row.");
+
+}
+
+});
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<table>
+
+<tr>
+<th>Student</th>
+<th>Course</th>
+<th>Score</th>
+</tr>
+
+<tr>
+<td>Mary</td>
+<td>CSS</td>
+<td>95%</td>
+</tr>
+
+</table>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:15px;
+}
+
+tr:nth-child(even){
+background:#F1F8FF;
+}
+
+tr:hover{
+background:#E3F2FD;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText(`const rows=document.querySelectorAll("tr");
+
+rows.forEach(row=>{
+
+row.onclick=function(){
+
+alert("You clicked a table row.");
+
+}
+
+});`);
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

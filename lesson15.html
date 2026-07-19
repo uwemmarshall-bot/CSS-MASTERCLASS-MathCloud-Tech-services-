@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 15 - CSS Overflow Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+header h1{
+font-size:38px;
+}
+
+.container{
+width:95%;
+max-width:1100px;
+margin:30px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.preview{
+background:#FAFAFA;
+border:2px dashed #CCC;
+border-radius:10px;
+padding:25px;
+}
+
+.box{
+width:320px;
+height:120px;
+border:3px solid #1565C0;
+padding:15px;
+overflow:hidden;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+margin:auto;
+}
+
+.exercise{
+background:#FFF8E1;
+border-left:6px solid orange;
+padding:20px;
+border-radius:10px;
+}
+
+footer{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 15 - CSS Overflow Property</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+The <strong>overflow</strong> property controls what happens when content is too large to fit inside an element.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+<pre>
+.box{
+overflow:hidden;
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;div class="box"&gt;
+
+This is a long paragraph used to demonstrate how the CSS overflow property works when there is too much content inside a fixed height container.
+
+&lt;/div&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+.box{
+height:120px;
+overflow:hidden;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.overflow=="scroll"){
+
+this.style.overflow="hidden";
+
+}else{
+
+this.style.overflow="scroll";
+
+}
+
+}
+</pre>
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<div class="box">
+
+CSS Overflow is one of the most useful properties in web design. It controls whether hidden content should be clipped, shown, scrolled or displayed automatically. Click this box to switch between hidden and scroll so you can see the difference.
+
+</div>
+
+<p style="margin-top:20px;text-align:center;">
+Click inside the box to change the overflow property.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates the content box.</p>
+
+<br>
+
+<p><strong>CSS</strong> uses <strong>overflow:hidden;</strong> to hide extra content.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> changes the overflow between <strong>hidden</strong> and <strong>scroll</strong> whenever the box is clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>Try changing the overflow property to:</p>
+
+<ul>
+
+<li>hidden</li>
+
+<li>scroll</li>
+
+<li>auto</li>
+
+<li>visible</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 15 Completed
+
+</footer>
+
+<script>
+
+const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.overflow=="scroll"){
+
+this.style.overflow="hidden";
+
+}else{
+
+this.style.overflow="scroll";
+
+}
+
+}
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<div class="box">
+
+This is a long paragraph used to demonstrate how the CSS overflow property works.
+
+</div>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.box{
+height:120px;
+overflow:hidden;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText(`const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.overflow=="scroll"){
+
+this.style.overflow="hidden";
+
+}else{
+
+this.style.overflow="scroll";
+
+}
+
+};`);
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

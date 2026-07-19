@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 27 - CSS Advanced Table Design</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:#0A2540;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+header h1{
+font-size:38px;
+}
+
+.container{
+width:95%;
+max-width:1200px;
+margin:30px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.table-container{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+caption{
+font-size:24px;
+font-weight:bold;
+margin-bottom:15px;
+color:#1565C0;
+}
+
+th{
+background:#1565C0;
+color:white;
+padding:15px;
+border:1px solid #ddd;
+}
+
+td{
+padding:14px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+tbody tr:nth-child(odd){
+background:#F9FCFF;
+}
+
+tbody tr:nth-child(even){
+background:#EAF4FF;
+}
+
+tbody tr:hover{
+background:#D6ECFF;
+transition:.3s;
+cursor:pointer;
+}
+
+.pass{
+background:#D4EDDA;
+color:#155724;
+font-weight:bold;
+}
+
+.average{
+background:#FFF3CD;
+color:#856404;
+font-weight:bold;
+}
+
+.fail{
+background:#F8D7DA;
+color:#721C24;
+font-weight:bold;
+}
+
+.exercise{
+background:#FFF8E1;
+padding:20px;
+border-left:6px solid orange;
+border-radius:10px;
+}
+
+footer{
+background:#0A2540;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 27 - Advanced Table Design</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>Create a professional result table using table captions, alternating row colors, hover effects, status colors, borders, and responsive design.</p>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;table&gt;
+&lt;caption&gt;Student Results&lt;/caption&gt;
+
+&lt;tr&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th&gt;Course&lt;/th&gt;
+&lt;th&gt;Score&lt;/th&gt;
+&lt;th&gt;Grade&lt;/th&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+table{
+border-collapse:collapse;
+width:100%;
+}
+
+tbody tr:hover{
+background:#D6ECFF;
+}
+
+.pass{
+background:#D4EDDA;
+}
+
+.fail{
+background:#F8D7DA;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const rows=document.querySelectorAll("tbody tr");
+
+rows.forEach(row=>{
+
+row.onclick=function(){
+
+alert(this.cells[0].innerText);
+
+}
+
+});
+</pre>
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="table-container">
+
+<table>
+
+<caption>
+
+Student Examination Result
+
+</caption>
+
+<thead>
+
+<tr>
+
+<th>S/N</th>
+
+<th>Student Name</th>
+
+<th>Course</th>
+
+<th>Score</th>
+
+<th>Grade</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>1</td>
+
+<td>Mary Johnson</td>
+
+<td>CSS</td>
+
+<td>95</td>
+
+<td>A</td>
+
+<td class="pass">PASS</td>
+
+</tr>
+
+<tr>
+
+<td>2</td>
+
+<td>David Paul</td>
+
+<td>HTML</td>
+
+<td>84</td>
+
+<td>B</td>
+
+<td class="pass">PASS</td>
+
+</tr>
+
+<tr>
+
+<td>3</td>
+
+<td>Grace Samuel</td>
+
+<td>JavaScript</td>
+
+<td>69</td>
+
+<td>C</td>
+
+<td class="average">AVERAGE</td>
+
+</tr>
+
+<tr>
+
+<td>4</td>
+
+<td>John Mark</td>
+
+<td>Bootstrap</td>
+
+<td>38</td>
+
+<td>F</td>
+
+<td class="fail">FAIL</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<p style="margin-top:20px;">
+Click any student row.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates a complete examination result table.</p>
+
+<br>
+
+<p><strong>CSS</strong> adds alternating row colors, hover effects, borders, captions, and colored status cells.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> displays the selected student's name when a row is clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<ul>
+
+<li>Add three more students.</li>
+
+<li>Create another subject column.</li>
+
+<li>Add a Total Score column.</li>
+
+<li>Add a Position column.</li>
+
+<li>Change the table header color.</li>
+
+<li>Add a Footer row.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 27 Completed
+
+</footer>
+
+<script>
+
+const rows=document.querySelectorAll("tbody tr");
+
+rows.forEach(row=>{
+
+row.onclick=function(){
+
+alert("Student: " + this.cells[1].innerText);
+
+}
+
+});
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<table>
+
+<tr>
+<th>Student</th>
+<th>Course</th>
+<th>Score</th>
+</tr>
+
+</table>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`table{
+width:100%;
+border-collapse:collapse;
+}
+
+tbody tr:hover{
+background:#D6ECFF;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText(`const rows=document.querySelectorAll("tbody tr");
+
+rows.forEach(row=>{
+
+row.onclick=function(){
+
+alert(this.cells[1].innerText);
+
+}
+
+});`);
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

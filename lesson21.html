@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 21 - CSS Float Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+header h1{
+font-size:38px;
+}
+
+.container{
+width:95%;
+max-width:1100px;
+margin:30px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.preview{
+background:#FAFAFA;
+border:2px dashed #CCC;
+border-radius:10px;
+padding:25px;
+overflow:auto;
+}
+
+.floatbox{
+width:150px;
+height:150px;
+background:#1565C0;
+color:white;
+font-size:22px;
+font-weight:bold;
+display:flex;
+justify-content:center;
+align-items:center;
+float:left;
+margin-right:20px;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.preview p{
+line-height:1.8;
+text-align:justify;
+}
+
+.exercise{
+background:#FFF8E1;
+border-left:6px solid orange;
+padding:20px;
+border-radius:10px;
+}
+
+footer{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 21 - CSS Float Property</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+The <strong>float</strong> property moves an element to the left or right, allowing surrounding text and other elements to wrap around it.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+<pre>
+.floatbox{
+float:left;
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;div class="floatbox"&gt;CSS&lt;/div&gt;
+
+&lt;p&gt;
+This text wraps around the floated box.
+&lt;/p&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+.floatbox{
+float:left;
+margin-right:20px;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const box=document.querySelector(".floatbox");
+
+box.onclick=function(){
+
+if(this.style.float=="right"){
+
+this.style.float="left";
+
+}else{
+
+this.style.float="right";
+
+}
+
+}
+</pre>
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<div class="floatbox">
+
+CSS
+
+</div>
+
+<p>
+
+The float property allows text to wrap around an element. This was commonly used for layouts before Flexbox and CSS Grid became popular. Today, it is still useful for wrapping images inside paragraphs and other specific layout situations. Click the blue box to move it from the left side to the right side.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates a box and a paragraph.</p>
+
+<br>
+
+<p><strong>CSS</strong> floats the box to the left so the paragraph wraps around it.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> changes the float direction between <strong>left</strong> and <strong>right</strong> whenever the box is clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>Try these values:</p>
+
+<ul>
+
+<li>float:left;</li>
+
+<li>float:right;</li>
+
+<li>float:none;</li>
+
+<li>Increase the margin-right value.</li>
+
+<li>Replace the box with an image and float it.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 21 Completed
+
+</footer>
+
+<script>
+
+const box=document.querySelector(".floatbox");
+
+box.onclick=function(){
+
+if(this.style.float=="right"){
+
+this.style.float="left";
+
+}else{
+
+this.style.float="right";
+
+}
+
+}
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<div class="floatbox">CSS</div>
+
+<p>This text wraps around the floated box.</p>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.floatbox{
+float:left;
+margin-right:20px;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText(`const box=document.querySelector(".floatbox");
+
+box.onclick=function(){
+
+if(this.style.float=="right"){
+
+this.style.float="left";
+
+}else{
+
+this.style.float="right";
+
+}
+
+};`);
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

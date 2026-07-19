@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 31 - Advanced Responsive Table</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:linear-gradient(135deg,#0A2540,#1565C0);
+color:#fff;
+padding:40px 20px;
+text-align:center;
+}
+
+header h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+header p{
+font-size:20px;
+}
+
+.container{
+width:95%;
+max-width:1400px;
+margin:30px auto;
+}
+
+.card{
+background:#fff;
+padding:25px;
+margin-bottom:25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.card h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:#fff;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+font-size:16px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.table-box{
+overflow:auto;
+max-height:500px;
+border:2px solid #1565C0;
+border-radius:10px;
+}
+
+table{
+border-collapse:collapse;
+min-width:1800px;
+width:100%;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:14px;
+text-align:center;
+white-space:nowrap;
+}
+
+thead th{
+background:#1565C0;
+color:white;
+position:sticky;
+top:0;
+z-index:5;
+}
+
+.freeze1{
+position:sticky;
+left:0;
+background:#1565C0;
+color:white;
+z-index:6;
+}
+
+.freeze2{
+position:sticky;
+left:80px;
+background:#1565C0;
+color:white;
+z-index:6;
+}
+
+.data1{
+position:sticky;
+left:0;
+background:white;
+font-weight:bold;
+z-index:4;
+}
+
+.data2{
+position:sticky;
+left:80px;
+background:white;
+z-index:4;
+}
+
+tbody tr:nth-child(even){
+background:#F8FBFF;
+}
+
+tbody tr:hover td{
+background:#D6ECFF;
+}
+
+.activity{
+background:#FFF8E1;
+border-left:7px solid orange;
+padding:20px;
+border-radius:10px;
+}
+
+.activity ul{
+margin-left:25px;
+line-height:2;
+}
+
+footer{
+background:#0A2540;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 31 - Advanced Responsive Table</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>👋 Welcome Student</h2>
+
+<p>
+
+Welcome to Lesson 31.
+
+In this lesson you will learn how to create a professional table that is used in schools, companies, hospitals, banks and business applications. The table contains frozen columns, a sticky header, horizontal scrolling and responsive design. This type of table is commonly used in Student Result Systems, Payroll Systems, Inventory Systems and Management Dashboards.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🎯 Lesson Objective</h2>
+
+<ul style="line-height:2;margin-left:25px;">
+
+<li>Create professional responsive tables.</li>
+
+<li>Freeze important columns.</li>
+
+<li>Create sticky table headers.</li>
+
+<li>Handle many columns professionally.</li>
+
+<li>Apply hover effects.</li>
+
+<li>Build tables suitable for real-life projects.</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+
+<pre>
+<table>
+
+<thead>
+
+<tr>
+
+<th class="freeze1">S/N</th>
+<th class="freeze2">Student Name</th>
+
+<th>HTML</th>
+<th>CSS</th>
+<th>JavaScript</th>
+
+</tr>
+
+</thead>
+
+</table>
+</pre>
+
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+
+<pre>
+.freeze1{
+position:sticky;
+left:0;
+}
+
+.freeze2{
+position:sticky;
+left:80px;
+}
+
+thead th{
+position:sticky;
+top:0;
+}
+</pre>
+
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+
+<pre>
+const rows=document.querySelectorAll("tbody tr");
+
+rows.forEach(row=>{
+
+row.onclick=function(){
+
+alert("Student : "+this.cells[1].innerText);
+
+}
+
+});
+</pre>
+
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>🖥 Live Example</h2>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th class="freeze1">S/N</th>
+<th class="freeze2">Student</th>
+
+<th>HTML</th>
+<th>CSS</th>
+<th>JavaScript</th>
+<th>PHP</th>
+<th>SQL</th>
+<th>Bootstrap</th>
+<th>React</th>
+<th>NodeJS</th>
+<th>Python</th>
+<th>Laravel</th>
+<th>Total</th>
+<th>Grade</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td class="data1">1</td>
+<td class="data2">Mary Johnson</td>
+<td>95</td>
+<td>96</td>
+<td>92</td>
+<td>90</td>
+<td>88</td>
+<td>95</td>
+<td>94</td>
+<td>90</td>
+<td>98</td>
+<td>93</td>
+<td>931</td>
+<td>A</td>
+
+</tr>
+
+<tr>
+
+<td class="data1">2</td>
+<td class="data2">David Paul</td>
+<td>82</td>
+<td>80</td>
+<td>84</td>
+<td>81</td>
+<td>79</td>
+<td>85</td>
+<td>83</td>
+<td>84</td>
+<td>86</td>
+<td>82</td>
+<td>826</td>
+<td>B</td>
+
+</tr>
+
+<tr>
+
+<td class="data1">3</td>
+<td class="data2">Grace Samuel</td>
+<td>100</td>
+<td>99</td>
+<td>98</td>
+<td>100</td>
+<td>98</td>
+<td>99</td>
+<td>100</td>
+<td>99</td>
+<td>100</td>
+<td>100</td>
+<td>993</td>
+<td>A+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<p style="margin-top:20px;text-align:center;font-weight:bold;">
+
+Scroll horizontally. Notice that the first two columns remain visible while all other columns move.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>📖 Lesson Summary</h2>
+
+<p>
+
+In this lesson you have learned how to create a responsive professional table with frozen columns, sticky headers, hover effects and horizontal scrolling. These techniques are widely used in School Management Systems, Hospital Systems, Banking Software, Payroll Applications and ERP Systems.
+
+</p>
+
+</div>
+
+<div class="card activity">
+
+<h2>📝 Practice Activities</h2>
+
+<ul>
+
+<li>Create a table with 20 columns.</li>
+
+<li>Freeze the first three columns.</li>
+
+<li>Add another 15 student records.</li>
+
+<li>Add a Passport column.</li>
+
+<li>Add Attendance and Remarks columns.</li>
+
+<li>Add Average, Position and Status columns.</li>
+
+<li>Create a Teacher Signature row.</li>
+
+<li>Create a Principal Approval row.</li>
+
+<li>Change the table colors to your own design.</li>
+
+<li>Make the table mobile responsive.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+CSS MASTERCLASS © 2026
+
+<br>
+
+Lesson 31 Completed Successfully
+
+</footer>
+
+<script>
+
+const rows=document.querySelectorAll("tbody tr");
+
+rows.forEach(row=>{
+
+row.onclick=function(){
+
+alert("Student Selected : "+this.cells[1].innerText);
+
+}
+
+});
+
+function copyHTML(){
+
+navigator.clipboard.writeText("<table>...</table>");
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(".freeze1{position:sticky;left:0;}");
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText("const rows=document.querySelectorAll('tbody tr');");
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

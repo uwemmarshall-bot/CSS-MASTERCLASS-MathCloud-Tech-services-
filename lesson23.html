@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 23 - CSS Z-Index Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+header h1{
+font-size:38px;
+}
+
+.container{
+width:95%;
+max-width:1100px;
+margin:30px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.preview{
+background:#FAFAFA;
+border:2px dashed #CCC;
+border-radius:10px;
+padding:30px;
+height:260px;
+position:relative;
+}
+
+.box1{
+width:180px;
+height:120px;
+background:#1565C0;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:22px;
+font-weight:bold;
+border-radius:10px;
+position:absolute;
+top:40px;
+left:80px;
+z-index:1;
+cursor:pointer;
+}
+
+.box2{
+width:180px;
+height:120px;
+background:#00A86B;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:22px;
+font-weight:bold;
+border-radius:10px;
+position:absolute;
+top:90px;
+left:180px;
+z-index:2;
+}
+
+.exercise{
+background:#FFF8E1;
+border-left:6px solid orange;
+padding:20px;
+border-radius:10px;
+}
+
+footer{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 23 - CSS Z-Index Property</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+
+The <strong>z-index</strong> property controls which positioned element appears in front when two or more elements overlap.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+<pre>
+.box{
+position:absolute;
+z-index:2;
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;div class="box1"&gt;Blue Box&lt;/div&gt;
+
+&lt;div class="box2"&gt;Green Box&lt;/div&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+.box1{
+position:absolute;
+z-index:1;
+}
+
+.box2{
+position:absolute;
+z-index:2;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const box=document.querySelector(".box1");
+
+box.onclick=function(){
+
+if(this.style.zIndex=="3"){
+
+this.style.zIndex="1";
+
+}else{
+
+this.style.zIndex="3";
+
+}
+
+}
+</pre>
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<div class="box1">
+
+Blue Box
+
+</div>
+
+<div class="box2">
+
+Green Box
+
+</div>
+
+</div>
+
+<p style="text-align:center;margin-top:20px;">
+Click the blue box to bring it to the front.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates two overlapping boxes.</p>
+
+<br>
+
+<p><strong>CSS</strong> uses <strong>position:absolute;</strong> and different <strong>z-index</strong> values to control which box appears on top.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> changes the blue box between <strong>z-index:1;</strong> and <strong>z-index:3;</strong> when clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>Try changing:</p>
+
+<ul>
+
+<li>z-index:1;</li>
+
+<li>z-index:5;</li>
+
+<li>z-index:10;</li>
+
+<li>Swap the z-index values of both boxes.</li>
+
+<li>Create three overlapping boxes with different z-index values.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 23 Completed
+
+</footer>
+
+<script>
+
+const box=document.querySelector(".box1");
+
+box.onclick=function(){
+
+if(this.style.zIndex=="3"){
+
+this.style.zIndex="1";
+
+}else{
+
+this.style.zIndex="3";
+
+}
+
+}
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<div class="box1">Blue Box</div>
+
+<div class="box2">Green Box</div>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.box1{
+position:absolute;
+z-index:1;
+}
+
+.box2{
+position:absolute;
+z-index:2;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText(`const box=document.querySelector(".box1");
+
+box.onclick=function(){
+
+if(this.style.zIndex=="3"){
+
+this.style.zIndex="1";
+
+}else{
+
+this.style.zIndex="3";
+
+}
+
+};`);
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

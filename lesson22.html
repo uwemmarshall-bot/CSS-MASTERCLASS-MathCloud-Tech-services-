@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 22 - CSS Clear Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+header h1{
+font-size:38px;
+}
+
+.container{
+width:95%;
+max-width:1100px;
+margin:30px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.preview{
+background:#FAFAFA;
+border:2px dashed #CCC;
+border-radius:10px;
+padding:25px;
+overflow:auto;
+}
+
+.floatbox{
+width:140px;
+height:140px;
+background:#1565C0;
+color:white;
+font-size:22px;
+font-weight:bold;
+display:flex;
+justify-content:center;
+align-items:center;
+float:left;
+margin-right:20px;
+border-radius:10px;
+}
+
+.clearbox{
+margin-top:20px;
+padding:20px;
+background:#00A86B;
+color:white;
+border-radius:10px;
+clear:left;
+cursor:pointer;
+transition:.3s;
+}
+
+.exercise{
+background:#FFF8E1;
+border-left:6px solid orange;
+padding:20px;
+border-radius:10px;
+}
+
+footer{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 22 - CSS Clear Property</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+The <strong>clear</strong> property specifies whether an element should move below floated elements. It is commonly used with the <strong>float</strong> property.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+<pre>
+.clearbox{
+clear:left;
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;div class="floatbox"&gt;Float&lt;/div&gt;
+
+&lt;div class="clearbox"&gt;
+Clear Element
+&lt;/div&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+.floatbox{
+float:left;
+}
+
+.clearbox{
+clear:left;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const clearBox=document.querySelector(".clearbox");
+
+clearBox.onclick=function(){
+
+if(this.style.clear=="none"){
+
+this.style.clear="left";
+
+}else{
+
+this.style.clear="none";
+
+}
+
+}
+</pre>
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<div class="floatbox">
+
+Float
+
+</div>
+
+<div class="clearbox">
+
+Click Me To Toggle Clear
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates a floated box and another box below it.</p>
+
+<br>
+
+<p><strong>CSS</strong> uses <strong>clear:left;</strong> so the green box starts below the floated element.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> switches between <strong>clear:left;</strong> and <strong>clear:none;</strong> when the green box is clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>Try changing the clear property to:</p>
+
+<ul>
+
+<li>clear:left;</li>
+
+<li>clear:right;</li>
+
+<li>clear:both;</li>
+
+<li>clear:none;</li>
+
+<li>Float two different boxes and clear both.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 22 Completed
+
+</footer>
+
+<script>
+
+const clearBox=document.querySelector(".clearbox");
+
+clearBox.onclick=function(){
+
+if(this.style.clear=="none"){
+
+this.style.clear="left";
+
+}else{
+
+this.style.clear="none";
+
+}
+
+}
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<div class="floatbox">Float</div>
+
+<div class="clearbox">
+Clear Element
+</div>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.floatbox{
+float:left;
+}
+
+.clearbox{
+clear:left;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText(`const clearBox=document.querySelector(".clearbox");
+
+clearBox.onclick=function(){
+
+if(this.style.clear=="none"){
+
+this.style.clear="left";
+
+}else{
+
+this.style.clear="none";
+
+}
+
+};`);
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 16 - CSS Opacity Property</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+header h1{
+font-size:38px;
+}
+
+.container{
+width:95%;
+max-width:1100px;
+margin:30px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.preview{
+background:#FAFAFA;
+border:2px dashed #CCC;
+border-radius:10px;
+padding:25px;
+}
+
+.box{
+width:250px;
+height:120px;
+margin:auto;
+background:#1565C0;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:24px;
+font-weight:bold;
+border-radius:12px;
+opacity:1;
+cursor:pointer;
+transition:.4s;
+}
+
+.exercise{
+background:#FFF8E1;
+border-left:6px solid orange;
+padding:20px;
+border-radius:10px;
+}
+
+footer{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 16 - CSS Opacity Property</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+The <strong>opacity</strong> property controls the transparency of an HTML element. The value ranges from <strong>0</strong> (completely transparent) to <strong>1</strong> (fully visible).
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+<pre>
+.box{
+opacity:0.5;
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;div class="box"&gt;
+Opacity
+&lt;/div&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+.box{
+opacity:1;
+background:#1565C0;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.opacity=="0.3"){
+
+this.style.opacity="1";
+
+}else{
+
+this.style.opacity="0.3";
+
+}
+
+}
+</pre>
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<div class="box">
+Opacity
+</div>
+
+<p style="text-align:center;margin-top:20px;">
+Click the blue box to change its transparency.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates the box.</p>
+
+<br>
+
+<p><strong>CSS</strong> sets the opacity to <strong>1</strong>, making the box fully visible.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> changes the opacity between <strong>1</strong> and <strong>0.3</strong> when the box is clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>Try changing the opacity to:</p>
+
+<ul>
+
+<li>1</li>
+
+<li>0.8</li>
+
+<li>0.6</li>
+
+<li>0.4</li>
+
+<li>0.2</li>
+
+<li>0</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 16 Completed
+
+</footer>
+
+<script>
+
+const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.opacity=="0.3"){
+
+this.style.opacity="1";
+
+}else{
+
+this.style.opacity="0.3";
+
+}
+
+}
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<div class="box">
+Opacity
+</div>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.box{
+opacity:1;
+background:#1565C0;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText(`const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.opacity=="0.3"){
+
+this.style.opacity="1";
+
+}else{
+
+this.style.opacity="0.3";
+
+}
+
+};`);
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>

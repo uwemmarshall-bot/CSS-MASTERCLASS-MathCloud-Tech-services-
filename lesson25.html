@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lesson 25 - CSS Overflow-X and Overflow-Y Properties</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#F4F7FB;
+color:#333;
+}
+
+header{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+header h1{
+font-size:38px;
+}
+
+.container{
+width:95%;
+max-width:1100px;
+margin:30px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+.code{
+background:#1E1E1E;
+color:#7CFC00;
+padding:20px;
+border-radius:10px;
+overflow:auto;
+}
+
+button{
+background:#1565C0;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#0D47A1;
+}
+
+.preview{
+background:#FAFAFA;
+border:2px dashed #CCC;
+border-radius:10px;
+padding:25px;
+}
+
+.box{
+width:320px;
+height:140px;
+margin:auto;
+padding:15px;
+border:3px solid #1565C0;
+border-radius:10px;
+overflow-x:auto;
+overflow-y:hidden;
+white-space:nowrap;
+cursor:pointer;
+transition:.3s;
+}
+
+.exercise{
+background:#FFF8E1;
+border-left:6px solid orange;
+padding:20px;
+border-radius:10px;
+}
+
+footer{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>CSS MASTERCLASS</h1>
+
+<p>Lesson 25 - CSS Overflow-X and Overflow-Y Properties</p>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Lesson Objective</h2>
+
+<p>
+
+The <strong>overflow-x</strong> property controls horizontal scrolling, while the <strong>overflow-y</strong> property controls vertical scrolling.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Syntax</h2>
+
+<div class="code">
+<pre>
+.box{
+overflow-x:auto;
+overflow-y:hidden;
+}
+</pre>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>HTML Code</h2>
+
+<div class="code">
+<pre>
+&lt;div class="box"&gt;
+
+This is a very long line of text that continues across the screen so that you can test the horizontal scrollbar created by the overflow-x property.
+
+&lt;/div&gt;
+</pre>
+</div>
+
+<button onclick="copyHTML()">Copy HTML</button>
+
+</div>
+
+<div class="card">
+
+<h2>CSS Code</h2>
+
+<div class="code">
+<pre>
+.box{
+overflow-x:auto;
+overflow-y:hidden;
+white-space:nowrap;
+}
+</pre>
+</div>
+
+<button onclick="copyCSS()">Copy CSS</button>
+
+</div>
+
+<div class="card">
+
+<h2>JavaScript Code</h2>
+
+<div class="code">
+<pre>
+const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.overflowY=="scroll"){
+
+this.style.overflowY="hidden";
+
+}else{
+
+this.style.overflowY="scroll";
+
+}
+
+}
+</pre>
+</div>
+
+<button onclick="copyJS()">Copy JavaScript</button>
+
+</div>
+
+<div class="card">
+
+<h2>Live Example</h2>
+
+<div class="preview">
+
+<div class="box">
+
+This is a very long line of text that demonstrates the CSS overflow-x property. Continue scrolling horizontally to read the remaining content and click this box to enable or disable the vertical scrollbar using the overflow-y property.
+
+</div>
+
+<p style="margin-top:20px;text-align:center;">
+Scroll horizontally and click the box to change the vertical overflow.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Explanation</h2>
+
+<p><strong>HTML</strong> creates the content container.</p>
+
+<br>
+
+<p><strong>CSS</strong> enables horizontal scrolling using <strong>overflow-x:auto;</strong> and hides vertical scrolling using <strong>overflow-y:hidden;</strong>.</p>
+
+<br>
+
+<p><strong>JavaScript</strong> switches the vertical overflow between <strong>hidden</strong> and <strong>scroll</strong> when the box is clicked.</p>
+
+</div>
+
+<div class="card exercise">
+
+<h2>Practice Exercise</h2>
+
+<p>Try these values:</p>
+
+<ul>
+
+<li>overflow-x:hidden;</li>
+
+<li>overflow-x:scroll;</li>
+
+<li>overflow-y:auto;</li>
+
+<li>overflow-y:visible;</li>
+
+<li>Increase the height and width of the box.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+Lesson 25 Completed
+
+</footer>
+
+<script>
+
+const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.overflowY=="scroll"){
+
+this.style.overflowY="hidden";
+
+}else{
+
+this.style.overflowY="scroll";
+
+}
+
+}
+
+function copyHTML(){
+
+navigator.clipboard.writeText(`<div class="box">
+
+This is a very long line of text that demonstrates overflow-x.
+
+</div>`);
+
+alert("HTML copied successfully.");
+
+}
+
+function copyCSS(){
+
+navigator.clipboard.writeText(`.box{
+overflow-x:auto;
+overflow-y:hidden;
+white-space:nowrap;
+}`);
+
+alert("CSS copied successfully.");
+
+}
+
+function copyJS(){
+
+navigator.clipboard.writeText(`const box=document.querySelector(".box");
+
+box.onclick=function(){
+
+if(this.style.overflowY=="scroll"){
+
+this.style.overflowY="hidden";
+
+}else{
+
+this.style.overflowY="scroll";
+
+}
+
+};`);
+
+alert("JavaScript copied successfully.");
+
+}
+
+</script>
+
+</body>
+</html>
